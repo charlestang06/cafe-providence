@@ -38,7 +38,7 @@ export const SearchIcon = (props) => (
     />
   </svg>
 );
-s
+
 export default function App() {
   return (
     <div className="flex flex-col items-center justify-start mt-28 min-h-5 space-y-5 px-4">
@@ -47,7 +47,6 @@ export default function App() {
         Helping you find the best cafes in Providence 🍵
       </p>
 
-      {/* Search Bar with Outline Removed */}
       <div className="w-full max-w-xl rounded-md p-2">
         <Input
           isClearable
@@ -72,13 +71,11 @@ export default function App() {
         />
       </div>
 
-      {/* Title Above the First Button */}
       <div className="w-full max-w-xl flex flex-col items-start space-y-2">
         <h2 className="text-lg font-semibold text-black">
           🐻 Drinking Providence
         </h2>
 
-        {/* Buttons Section with Outlines */}
         <div className="flex flex-wrap justify-center gap-2 w-full max-w-xl">
           <Button variant="light" className="w-full text-black text-sm p-3 border border-black rounded-md">
             💻 Best Cafes for Co-working
