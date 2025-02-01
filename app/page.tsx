@@ -26,8 +26,8 @@ export default function App() {
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="flex flex-col items-center justify-start mt-28 min-h-5 space-y-5 px-4">
         {/* Big Tagline - Centered */}
-        <p className="text-center text-3xl sm:text-4xl font-bold text-black max-w-2xl mt-2">
-          Helping you find the best cafes in Providence 🍵
+        <p className="text-center text-3xl sm:text-4xl font-bold text-black mt-2 leading-4">
+          Find the best cafe for you, <br /> wherever you are.
         </p>
 
         {/* Search Bar */}
@@ -67,31 +67,37 @@ export default function App() {
         </Button>
 
         {/* Category Buttons */}
-        <div className="w-full max-w-xl flex flex-col items-start space-y-2 mt-4">
-          <h2 className="text-lg font-semibold text-black">
-            🐻 Drinking Providence
+        <div className="w-full max-w-xl flex flex-col items-start space-y-2">
+          <h2 className="text-lg font-semibold text-black mt-[4rem]">
+            🐻 Around Providence
           </h2>
-          <div className="flex flex-wrap justify-center gap-2 w-full max-w-xl">
+          <div className="flex justify-center gap-2 w-full max-w-xl">
             <Button
-              onClick={() => handleCategorySearch("Best Cafes for Co-working")}
+              onClick={() => handleCategorySearch("Best study spots")}
               variant="light"
-              className="w-full text-black text-sm p-3 border border-black rounded-md"
+              className="flex-1 text-black text-sm py-[2rem] border border-black rounded-md border-[0.5px]"
             >
-              💻 Best Cafes for Co-working
+              <p className="text-left">
+                💻 <br /> Best study spots
+              </p>
             </Button>
             <Button
-              onClick={() => handleCategorySearch("Best for Large Groups")}
+              onClick={() => handleCategorySearch("Best for hangouts")}
               variant="light"
-              className="w-full text-black text-sm p-3 border border-black rounded-md"
+              className="flex-1 text-black text-sm py-[2rem]   border border-black rounded-md border-[0.5px]"
             >
-              🥳 Best for Large Groups
+              <p className="text-left">
+                🥳 <br /> Best for hangouts
+              </p>
             </Button>
             <Button
               onClick={() => handleCategorySearch("Open on Christmas")}
               variant="light"
-              className="w-full text-black text-sm p-3 border border-black rounded-md"
+              className="flex-1 text-black text-sm py-[2rem] border border-black rounded-md border-[0.5px]"
             >
-              🎄 Open on Christmas
+              <p className="text-left">
+                🎄 <br /> Open on Christmas
+              </p>
             </Button>
           </div>
         </div>

@@ -23,7 +23,7 @@ export default function CafeCard({
   seating,
 }: CafeCardProps) {
   return (
-    <div className="border-b border-gray-300 py-3 w-full max-w-2xl">
+    <div className="border-b border-gray-300 py-3 w-full">
       <div className="grid grid-cols-[auto,1fr] gap-3 items-center">
         <img
           src={imageUrl}

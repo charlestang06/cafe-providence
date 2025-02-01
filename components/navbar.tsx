@@ -14,7 +14,7 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Logo />
+            <Logo className="mt-[0.8rem]" />
             <p className="font-bold text-inherit">Cafe Providence</p>
           </NextLink>
         </NavbarBrand>

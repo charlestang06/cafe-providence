@@ -37,9 +37,6 @@ export default function ResultsPage() {
           ☕ Back to Search ☕
         </button>
 
-        {/* Header for the List of Cafes */}
-        <h1 className="text-2xl font-bold text-left mt-2">List of Cafes:</h1>
-
         {/* Map over cafes for the current page (only 3 random cafes) */}
         <div className="flex flex-col gap-4 mt-2">
           {randomCafes.map((cafe) => (
