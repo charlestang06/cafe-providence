@@ -1,23 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation"; // Importing useRouter for navigating
+import { useRouter } from "next/navigation"; 
 import { Button, Input } from "@heroui/react";
-import { SearchIcon } from "@/components/icons"; // Make sure this path matches where your SearchIcon is located
+import { SearchIcon } from "@/components/icons";
 
 export default function App() {
-  const [searchQuery, setSearchQuery] = useState(""); // State to hold search query
+  const [searchQuery, setSearchQuery] = useState(""); 
   const router = useRouter();
 
-  // Handle search submission
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      // Redirect to the results page with the search query as part of the URL (or can use query params)
       router.push(`/results?query=${encodeURIComponent(searchQuery)}`);
     }
   };
 
-  // Handle category button click
   const handleCategorySearch = (category: string) => {
     router.push(`/results?category=${encodeURIComponent(category)}`);
   };
@@ -25,17 +22,15 @@ export default function App() {
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="flex flex-col items-center justify-start mt-28 min-h-5 space-y-5 px-4">
-        {/* Big Tagline - Centered */}
         <p className="text-center text-3xl sm:text-4xl font-bold text-black max-w-2xl mt-2">
           Helping you find the best cafes in Providence 🍵
         </p>
 
-        {/* Search Bar */}
         <div className="w-full max-w-xl rounded-md p-2">
           <Input
             isClearable
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
+            onChange={(e) => setSearchQuery(e.target.value)} 
             classNames={{
               label: "hidden",
               input: [
@@ -57,7 +52,6 @@ export default function App() {
           />
         </div>
 
-        {/* Search Button */}
         <Button
           onClick={handleSearch}
           variant="light"
@@ -66,7 +60,6 @@ export default function App() {
           Search
         </Button>
 
-        {/* Category Buttons */}
         <div className="w-full max-w-xl flex flex-col items-start space-y-2 mt-4">
           <h2 className="text-lg font-semibold text-black">
             🐻 Drinking Providence
