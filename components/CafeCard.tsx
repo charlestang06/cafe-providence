@@ -37,6 +37,7 @@ const Chip = ({
   size?: "default" | "small";
 }) => {
   const baseStyles = "rounded-full font-medium transition-all duration-200";
+
   const sizeStyles = {
     default: "px-4 py-2 text-base",
     small: "px-2 py-1 text-sm",
@@ -45,21 +46,25 @@ const Chip = ({
   const variantStyles = {
     default: active
       ? "bg-slate-100 text-slate-700 hover:bg-slate-200"
-      : "bg-gray-50 text-gray-500 border border-gray-200", 
-    rating: "bg-amber-100 text-amber-600 flex items-center gap-2", 
-    link: "bg-gray-50 text-gray-500 hover:bg-gray-100 flex items-center gap-2", 
+      : "bg-gray-50 text-gray-500 border border-gray-200",
+    rating: "bg-amber-100 text-amber-600 flex items-center gap-2",
+    link: "bg-gray-50 text-gray-500 hover:bg-gray-100 flex items-center gap-2",
     subtle: active
-      ? "bg-blue-100 text-blue-600 flex items-center gap-1" 
-      : "bg-gray-50 text-gray-400 flex items-center gap-1", 
+      ? "bg-blue-100 text-blue-600 flex items-center gap-1"
+      : "bg-gray-50 text-gray-400 flex items-center gap-1",
   };
 
+  const chipClassName = [
+    baseStyles,
+    sizeStyles[size],
+    variantStyles[variant],
+    onClick ? "cursor-pointer" : "", 
+  ]
+    .filter(Boolean) 
+    .join(" "); 
+
   const content = (
-    <span
-      className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${
-        onClick ? "cursor-pointer" : ""
-      }`}
-      onClick={onClick}
-    >
+    <span className={chipClassName} onClick={onClick}>
       {children}
       {variant === "link" && <FaExternalLinkAlt className="w-3.5 h-3.5" />}
     </span>
