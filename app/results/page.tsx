@@ -16,22 +16,37 @@ function Results() {
   const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
-    if (!query && !category) {
+    if (!query && category !== "isopenafter5pm") {
       setFilteredResults([]);
       return;
     }
 
-    const results = cafes.filter(
-      (cafe) =>
+    const results = cafes.filter((cafe) => {
+      const hours = cafe["hours open"].toLowerCase();
+      const isOpenAfter5pm =
+        /(\d{2}):(\d{2})-(\d{2}):(\d{2})/.test(hours) &&
+        parseInt(hours.split("-")[1].split(":")[0]) >= 17;
+
+      const matchesQuery =
         cafe["address"].toLowerCase().includes(query) ||
         cafe["vibe"].toLowerCase().includes(query) ||
         cafe["seating"].toLowerCase().includes(query) ||
         cafe["wifi"].toLowerCase().includes(query) ||
-        cafe["hours open"].toLowerCase().includes(query) ||
         cafe["rating"].toString().includes(query) ||
         cafe["keywords"]?.toLowerCase().includes(query) ||
-        (category && cafe["vibe"].toLowerCase().includes(category))
-    );
+        cafe["keywords"]
+          .split(", ")
+          .some((keyword) => query.toLowerCase().includes(keyword)) ||
+        (category && cafe["vibe"].toLowerCase().includes(category));
+
+      // const matchesCategory =
+      //   category === "isopenafter5pm" ? isOpenAfter5pm : false;
+
+      // return (
+      //   matchesQuery && (category !== "isopenafter5pm" ? matchesCategory : true)
+      // );
+      return matchesQuery;
+    });
 
     setFilteredResults(results);
     setShowConfetti(true);

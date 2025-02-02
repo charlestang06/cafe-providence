@@ -30,8 +30,12 @@ export default function App() {
   };
 
   const handleCategorySearch = (category: string) => {
-    router.push(`/results?query=${encodeURIComponent(category)}`);
-  };
+    if (category === "Open after 4PM") {
+      router.push(`/results?category=isOpenAfter5PM`);
+    } else {
+      router.push(`/results?query=${encodeURIComponent(category)}`);
+    }
+  };  
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
@@ -77,6 +81,26 @@ export default function App() {
           </Button>
         </div>
 
+        {/* Suggested searches */}
+        <div className="items-start space-y-2">
+          <div className="justify-center gap-2 flex flex-col">
+            {[
+              "matcha lattes in a cozy atmosphere",
+              "espresso and coffee for studying in a pinch",
+              "brunch and breakfast sandwiches in Providence",
+            ].map((category) => (
+              <Button
+                key={category}
+                onPress={() => handleCategorySearch(category)}
+                variant="light"
+                className="inline-flex items-center justify-center text-gray-600 text-sm border border-black rounded-[5rem] border-[0.5px] px-[1rem]"
+              >
+                <p className="text-left">{category}</p>
+              </Button>
+            ))}
+          </div>
+        </div>
+
         {/* Category Buttons */}
         <div className="w-full max-w-xl flex flex-col items-start space-y-2">
           <h2 className="text-lg font-semibold text-black mt-[4rem]">
@@ -86,7 +110,7 @@ export default function App() {
             {[
               { label: "💻 Best study spots", value: "study" },
               { label: "🥳 Trending cafes", value: "trendy" },
-              { label: "🎄 Open on Christmas", value: "Open on Christmas" },
+              { label: "⏰ Open after 4PM", value: "Open after 4PM" },
             ].map((category) => (
               <Button
                 key={category.value}
