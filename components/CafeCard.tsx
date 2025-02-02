@@ -58,13 +58,13 @@ const Chip = ({
     baseStyles,
     sizeStyles[size],
     variantStyles[variant],
-    onClick ? "cursor-pointer" : "", 
+    onClick ? "cursor-pointer" : "",
   ]
-    .filter(Boolean) 
-    .join(" "); 
+    .filter(Boolean)
+    .join(" ");
 
   const content = (
-    <span className={chipClassName} onClick={onClick}>
+    <span className={chipClassName}>
       {children}
       {variant === "link" && <FaExternalLinkAlt className="w-3.5 h-3.5" />}
     </span>

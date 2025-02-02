@@ -30,8 +30,8 @@ export default function App() {
   };
 
   const handleCategorySearch = (category: string) => {
-    if (category === "Open after 4PM") {
-      router.push(`/results?category=isOpenAfter5PM`);
+    if (!category) {
+      router.push(`/results`);
     } else {
       router.push(`/results?query=${encodeURIComponent(category)}`);
     }
@@ -110,7 +110,7 @@ export default function App() {
             {[
               { label: "💻 Best study spots", value: "study" },
               { label: "🥳 Trending cafes", value: "trendy" },
-              { label: "⏰ Open after 3PM", value: "Open after 3PM" },
+              { label: "⏰ Open after 3PM", value: "" },
             ].map((category) => (
               <Button
                 key={category.value}
