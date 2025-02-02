@@ -19,14 +19,15 @@ export default function ResultsPage() {
       return;
     }
 
-    const results = cafes.filter((cafe) =>
-      cafe["address"].toLowerCase().includes(query) ||
-      cafe["vibe"].toLowerCase().includes(query) ||
-      cafe["seating"].toLowerCase().includes(query) ||
-      cafe["wifi"].toLowerCase().includes(query) ||
-      cafe["hours open"].toLowerCase().includes(query) ||
-      cafe["rating"].toString().includes(query) ||
-      (category && cafe["vibe"].toLowerCase().includes(category))
+    const results = cafes.filter(
+      (cafe) =>
+        cafe["address"].toLowerCase().includes(query) ||
+        cafe["vibe"].toLowerCase().includes(query) ||
+        cafe["seating"].toLowerCase().includes(query) ||
+        cafe["wifi"].toLowerCase().includes(query) ||
+        cafe["hours open"].toLowerCase().includes(query) ||
+        cafe["rating"].toString().includes(query) ||
+        (category && cafe["vibe"].toLowerCase().includes(category))
     );
 
     setFilteredResults(results);
@@ -54,7 +55,7 @@ export default function ResultsPage() {
               dineIn={cafe["dine in"]}
               delivery={cafe.delivery}
               hours={cafe["hours open"]}
-              orderOnline={cafe["online ordering"]}
+              orderOnline={cafe["online ordering"] || ""}
               wifi={cafe.wifi}
               seating={cafe.seating}
               rating={cafe.rating}
