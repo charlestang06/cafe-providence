@@ -30,8 +30,12 @@ export default function App() {
   };
 
   const handleCategorySearch = (category: string) => {
-    router.push(`/results?query=${encodeURIComponent(category)}`);
-  };
+    if (category === "Open after 4PM") {
+      router.push(`/results?category=isOpenAfter5PM`);
+    } else {
+      router.push(`/results?query=${encodeURIComponent(category)}`);
+    }
+  };  
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
@@ -106,7 +110,7 @@ export default function App() {
             {[
               { label: "💻 Best study spots", value: "study" },
               { label: "🥳 Trending cafes", value: "trendy" },
-              { label: "🎄 Open on Christmas", value: "Open on Christmas" },
+              { label: "⏰ Open after 4PM", value: "Open after 4PM" },
             ].map((category) => (
               <Button
                 key={category.value}
