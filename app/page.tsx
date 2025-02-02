@@ -1,17 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button, Input } from "@heroui/react";
 import { SearchIcon } from "@/components/icons";
 
 export default function App() {
-  const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const [searchEmptyError, setSearchEmptyError] = useState<boolean>(false);
+
+  useEffect(() => {
+    setSearchEmptyError(false);
+  }, [searchQuery]);
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
       router.push(`/results?query=${encodeURIComponent(searchQuery)}`);
+    } else {
+      setSearchEmptyError(true);
     }
   };
 
@@ -22,7 +30,7 @@ export default function App() {
   };
 
   const handleCategorySearch = (category: string) => {
-    router.push(`/results?category=${encodeURIComponent(category)}`);
+    router.push(`/results?query=${encodeURIComponent(category)}`);
   };
 
   return (
@@ -34,10 +42,15 @@ export default function App() {
 
         <div className="w-full rounded-lg p-2 flex items-center space-x-2">
           <Input
-            isClearable
+            isClearable={true}
+            onClear={() => setSearchQuery("")}
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+            }}
             onKeyDown={handleKeyPress}
+            isInvalid={searchEmptyError}
+            errorMessage={searchEmptyError ? "Please enter a search query" : ""}
             labelPlacement="outside"
             classNames={{
               label: "hidden",
@@ -71,8 +84,8 @@ export default function App() {
           </h2>
           <div className="flex justify-center gap-2 w-full max-w-xl">
             {[
-              { label: "💻 Best study spots", value: "Best study spots" },
-              { label: "🥳 Best for hangouts", value: "Best for hangouts" },
+              { label: "💻 Best study spots", value: "study" },
+              { label: "🥳 Trending cafes", value: "trendy" },
               { label: "🎄 Open on Christmas", value: "Open on Christmas" },
             ].map((category) => (
               <Button
