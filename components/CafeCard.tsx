@@ -1,14 +1,17 @@
+import Link from "next/link";
+
 interface CafeCardProps {
   name: string;
   imageUrl: string;
   location: string;
-  dineIn: boolean;
-  delivery: boolean;
-  aesthetic: string;
+  dineIn: string;
+  delivery: string;
   hours: string;
-  wifi: boolean;
+  orderOnline: string;
+  wifi: string;
   seating: string;
-  noiseLevel: string;
+  rating: number;
+  vibe: string;
 }
 
 export default function CafeCard({
@@ -17,10 +20,12 @@ export default function CafeCard({
   location,
   dineIn,
   delivery,
-  aesthetic,
   hours,
+  orderOnline,
   wifi,
   seating,
+  rating,
+  vibe,
 }: CafeCardProps) {
   return (
     <div className="border-b border-gray-300 py-3 w-full">
@@ -32,20 +37,20 @@ export default function CafeCard({
           style={{ width: "140px", height: "140px" }}
         />
         <div>
-          <div className="flex flex-row justify-between w-full">
-            <h2 className="font-bold text-black flex flex-wrap items-center text-lg">
-              {name}
-            </h2>
-          </div>
-          <p className="text-gray-500 text-sm flex items-center">
-            📍 {location}
-          </p>
-          <p className="text-sm">🎨 Aesthetic: {aesthetic}</p>
+          <h2 className="font-bold text-black text-lg">{name}</h2>
+          <p className="text-gray-500 text-sm">📍 {location}</p>
+          <p className="text-sm">☕ Vibe: {vibe}</p>
+          <p className="text-sm">⭐ Rating: {rating}</p>
           <p className="text-sm">⏰ Hours: {hours}</p>
           <p className="text-sm">🪑 Seating: {seating}</p>
-          <p className="text-sm">🍽️ Dine-in: {dineIn ? "Yes" : "No"}</p>
-          <p className="text-sm">🚚 Delivery: {delivery ? "Yes" : "No"}</p>
-          <p className="text-sm">📶 Wifi: {wifi ? "Yes" : "No"}</p>
+          <p className="text-sm">🍽️ Dine-in: {dineIn}</p>
+          <p className="text-sm">🚚 Delivery: {delivery}</p>
+          <p className="text-sm">📶 Wi-Fi: {wifi}</p>
+          {orderOnline && (
+            <p className="text-sm">
+              🛒 <Link href={orderOnline} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">Order Online</Link>
+            </p>
+          )}
         </div>
       </div>
     </div>

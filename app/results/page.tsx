@@ -1,116 +1,70 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation"; 
+import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import CafeCard from "@/components/CafeCard";
-import cafes from "@/public/cafes.json"; 
-
-const thayerStreetCafes = [
-  {
-    name: "Aroma Joe's",
-    "dine in": "Yes",
-    "take out": "Yes",
-    delivery: "Yes",
-    "hours open": "7:00 - 21:00",
-    "online ordering": "aromajoes.com",
-    address: "257 Thayer St, Providence, RI 02906",
-    rating: 4.8,
-    wifi: "Yes",
-    seating: "5-8",
-    vibe: "Small, popular cafe for regulars on Thayer serving drinks and breakfast foods.",
-    "image link":
-      "https://snworksceo.imgix.net/bdh/194c13c9-1d94-453f-b06a-387c35168a7c.sized-1000x1000.jpeg?w=800&dpr=2&ar=16%3A9&fit=crop&crop=faces",
-  },
-  {
-    name: "Sydney Cafe (Thayer)",
-    "dine in": "Yes",
-    "take out": "Yes",
-    delivery: "No",
-    "hours open": "8:00 - 18:30",
-    "online ordering": "https://www.sydneypvd.com/",
-    address: "300 Thayer St, Providence, RI 02912",
-    rating: 3.6,
-    wifi: "Yes",
-    seating: "15-20",
-    vibe: "Australian-inspired café serving expertly brewed coffee, fresh pastries, and wholesome brunch options in a stylish, airy space.",
-    "image link":
-      "https://static.wixstatic.com/media/6c3b8b_33392a3fa22941cc93c02e05ccfd6c30~mv2.jpg/v1/fill/w_266,h_190,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c3b8b_33392a3fa22941cc93c02e05ccfd6c30~mv2.jpg",
-  },
-  {
-    name: "Starbucks (Thayer)",
-    "dine in": "Yes",
-    "take out": "Yes",
-    delivery: "No",
-    "hours open": "8:00 - 16:00",
-    "online ordering": "starbucks.com",
-    address: "1 Financial Plaza, Providence, RI 02903",
-    rating: 4.0,
-    wifi: "Yes",
-    seating: "15-20",
-    vibe: "A busy, familiar chain location on Thayer Street, popular among students and locals for reliable coffee and a place to study.",
-    "image link":
-      "https://snworksceo.imgix.net/bdh/7c5c8758-8011-43d3-9f32-775ce3a0ad34.sized-1000x1000.JPG?w=800",
-  },
-];
-
-const getRandomCafes = (cafes: any[]) => {
-  const shuffled = cafes.sort(() => 0.5 - Math.random()); 
-  return shuffled.slice(0, 3);
-};
+import cafes from "@/public/cafes.json";
+import { Button } from "@heroui/react";
 
 export default function ResultsPage() {
-  const [cafesToShow, setCafesToShow] = useState<typeof cafes>([]); 
+  const searchParams = useSearchParams();
   const router = useRouter();
-
-  const searchQuery = "cafes on Thayer Street"; 
+  const query = searchParams.get("query")?.toLowerCase() || "";
+  const category = searchParams.get("category")?.toLowerCase() || "";
+  const [filteredResults, setFilteredResults] = useState<typeof cafes>([]);
 
   useEffect(() => {
-    if (searchQuery.toLowerCase() === "cafes on thayer street") {
-      setCafesToShow(thayerStreetCafes);
-    } else {
-      const randomCafesList = getRandomCafes(cafes);
-      setCafesToShow(randomCafesList);
+    if (!query && !category) {
+      setFilteredResults([]);
+      return;
     }
-  }, [searchQuery]); 
 
-  const goBack = () => {
-    router.push("/"); 
-  };
+    const results = cafes.filter((cafe) =>
+      cafe["address"].toLowerCase().includes(query) ||
+      cafe["vibe"].toLowerCase().includes(query) ||
+      cafe["seating"].toLowerCase().includes(query) ||
+      cafe["wifi"].toLowerCase().includes(query) ||
+      cafe["hours open"].toLowerCase().includes(query) ||
+      cafe["rating"].toString().includes(query) ||
+      (category && cafe["vibe"].toLowerCase().includes(category))
+    );
+
+    setFilteredResults(results);
+  }, [query, category]);
 
   return (
-    <main className="container mx-auto max-w-7xl pt-2 px-6 flex-grow">
-      <section className="flex flex-col items-start justify-center gap-4 py-2 md:py-4">
-        <button
-          onClick={goBack} 
-          className="w-full py-3 bg-transparent border border-gray-600 text-gray-600 rounded-md hover:bg-gray-200 hover:text-gray-800 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-        >
-          ☕ Back to Search ☕
-        </button>
+    <div className="p-6">
+      <Button
+        onClick={() => router.push("/")}
+        variant="light"
+        className="text-black text-sm p-3 border border-black rounded-md mb-4"
+      >
+        ⬅ Back to Search
+      </Button>
 
-        <h1 className="text-2xl font-bold text-left mt-2">
-          {searchQuery.toLowerCase() === "cafes on thayer street"
-            ? "Cafes on Thayer Street"
-            : "Random Cafes:"}
-        </h1>
-
-        <div className="flex flex-col gap-4 mt-2">
-          {cafesToShow.map((cafe) => (
+      <h1 className="text-2xl font-bold mb-4">Search Results</h1>
+      {filteredResults.length > 0 ? (
+        <div className="flex flex-col space-y-4">
+          {filteredResults.map((cafe) => (
             <CafeCard
               key={cafe.name}
               name={cafe.name}
               imageUrl={cafe["image link"]}
               location={cafe.address}
-              dineIn={cafe["dine in"] === "Yes"}
-              delivery={cafe.delivery === "Yes"}
-              aesthetic={cafe.vibe || "No aesthetic information"}
+              dineIn={cafe["dine in"]}
+              delivery={cafe.delivery}
               hours={cafe["hours open"]}
-              wifi={cafe.wifi === "Yes"}
+              orderOnline={cafe["online ordering"]}
+              wifi={cafe.wifi}
               seating={cafe.seating}
-              noiseLevel={""} 
+              rating={cafe.rating}
+              vibe={cafe.vibe}
             />
           ))}
         </div>
-      </section>
-    </main>
+      ) : (
+        <p>No results found for "{query || category}".</p>
+      )}
+    </div>
   );
 }
