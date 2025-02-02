@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation"; 
-import { Button, Input } from "@heroui/react";
+import { useRouter } from "next/navigation";
+import { Button, Form, Input } from "@heroui/react";
 import { SearchIcon } from "@/components/icons";
 
 export default function App() {
-  const [searchQuery, setSearchQuery] = useState(""); 
+  const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
 
   const handleSearch = () => {
@@ -27,26 +27,27 @@ export default function App() {
           Find the best cafe for you, <br /> wherever you are.
         </p>
 
-        <div className="w-full max-w-xl rounded-md p-2">
+        <div className="w-full rounded-lg p-2">
           <Input
             isClearable
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)} 
+            onChange={(e) => setSearchQuery(e.target.value)}
+            labelPlacement="outside"
             classNames={{
               label: "hidden",
               input: [
                 "w-full",
-                "bg-transparent",
+                // "bg-transparent",
                 "text-black",
                 "focus:ring-0",
                 "placeholder:text-gray-500",
               ],
-              innerWrapper: "bg-transparent",
-              inputWrapper: "bg-transparent",
+              // innerWrapper: "bg-transparent",
+              // inputWrapper: "bg-transparent",
             }}
             label="Search"
+            className="rounded-lg"
             placeholder="quiet spot with good matcha..."
-            radius="none"
             startContent={
               <SearchIcon className="text-black pointer-events-none flex-shrink-0" />
             }
