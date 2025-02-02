@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button, Form, Input } from "@heroui/react";
+import { Button, Input } from "@heroui/react";
 import { SearchIcon } from "@/components/icons";
 
 export default function App() {
@@ -15,6 +15,12 @@ export default function App() {
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   const handleCategorySearch = (category: string) => {
     router.push(`/results?category=${encodeURIComponent(category)}`);
   };
@@ -22,28 +28,25 @@ export default function App() {
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="flex flex-col items-center justify-start mt-28 min-h-5 space-y-5 px-4">
-        {/* Big Tagline - Centered */}
         <p className="text-center text-3xl sm:text-4xl font-bold text-black mt-2 leading-4">
           Find the best cafe for you, <br /> wherever you are.
         </p>
 
-        <div className="w-full rounded-lg p-2">
+        <div className="w-full rounded-lg p-2 flex items-center space-x-2">
           <Input
             isClearable
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={handleKeyPress}
             labelPlacement="outside"
             classNames={{
               label: "hidden",
               input: [
                 "w-full",
-                // "bg-transparent",
                 "text-black",
                 "focus:ring-0",
                 "placeholder:text-gray-500",
               ],
-              // innerWrapper: "bg-transparent",
-              // inputWrapper: "bg-transparent",
             }}
             label="Search"
             className="rounded-lg"
@@ -52,15 +55,14 @@ export default function App() {
               <SearchIcon className="text-black pointer-events-none flex-shrink-0" />
             }
           />
-        </div>
-
         <Button
           onClick={handleSearch}
           variant="light"
-          className="w-full text-black text-sm p-3 border border-black rounded-md"
+          className="text-black text-sm p-3 border border-black rounded-md mt-6"
         >
           Search
         </Button>
+        </div>
 
         {/* Category Buttons */}
         <div className="w-full max-w-xl flex flex-col items-start space-y-2">
@@ -68,33 +70,20 @@ export default function App() {
             🐻 Around Providence
           </h2>
           <div className="flex justify-center gap-2 w-full max-w-xl">
-            <Button
-              onClick={() => handleCategorySearch("Best study spots")}
-              variant="light"
-              className="flex-1 text-black text-sm py-[2rem] border border-black rounded-md border-[0.5px]"
-            >
-              <p className="text-left">
-                💻 <br /> Best study spots
-              </p>
-            </Button>
-            <Button
-              onClick={() => handleCategorySearch("Best for hangouts")}
-              variant="light"
-              className="flex-1 text-black text-sm py-[2rem]   border border-black rounded-md border-[0.5px]"
-            >
-              <p className="text-left">
-                🥳 <br /> Best for hangouts
-              </p>
-            </Button>
-            <Button
-              onClick={() => handleCategorySearch("Open on Christmas")}
-              variant="light"
-              className="flex-1 text-black text-sm py-[2rem] border border-black rounded-md border-[0.5px]"
-            >
-              <p className="text-left">
-                🎄 <br /> Open on Christmas
-              </p>
-            </Button>
+            {[
+              { label: "💻 Best study spots", value: "Best study spots" },
+              { label: "🥳 Best for hangouts", value: "Best for hangouts" },
+              { label: "🎄 Open on Christmas", value: "Open on Christmas" },
+            ].map((category) => (
+              <Button
+                key={category.value}
+                onClick={() => handleCategorySearch(category.value)}
+                variant="light"
+                className="flex-1 text-black text-sm py-[2rem] border border-black rounded-md border-[0.5px]"
+              >
+                <p className="text-left">{category.label}</p>
+              </Button>
+            ))}
           </div>
         </div>
       </div>
