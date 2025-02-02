@@ -4,7 +4,6 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import CafeCard from "@/components/CafeCard";
 import cafes from "@/public/cafes.json";
-import { Button } from "@heroui/react";
 
 export default function ResultsPage() {
   const searchParams = useSearchParams();
@@ -34,15 +33,7 @@ export default function ResultsPage() {
   }, [query, category]);
 
   return (
-    <div className="p-6">
-      <Button
-        onClick={() => router.push("/")}
-        variant="light"
-        className="text-black text-sm p-3 border border-black rounded-md mb-4"
-      >
-        ⬅ Back to Search
-      </Button>
-
+    <div className="pb-[5rem]">
       <h1 className="text-2xl font-bold mb-4">Search Results</h1>
       {filteredResults.length > 0 ? (
         <div className="flex flex-col space-y-4">

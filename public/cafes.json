@@ -1,6 +1,7 @@
 [
   {
     "name": "The Underground Coffee Company",
+    "keywords": "bakery, pastries, coffee, student, college, university, lgbtq",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -15,6 +16,7 @@
   },
   {
     "name": "Meeting Street Cafe",
+    "keywords": "breakfast, brunch, entrees, bagels, salmon, homestyle",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "Yes",
@@ -29,6 +31,7 @@
   },
   {
     "name": "Aroma Joe's",
+    "keywords": "popular, quick, coffee, drinks, sweets, bagels, sandwiches, thayer",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "Yes",
@@ -43,6 +46,7 @@
   },
   {
     "name": "Brown Bee Coffee",
+    "keywords": "bakery, pastries, french, crossiant, student, college, university, trendy, aesthetic, studying, study, cozy, cute",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -57,6 +61,7 @@
   },
   {
     "name": "Dave's Coffee",
+    "keywords": "popular, coffee, drinks, pastries, upscale",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -71,6 +76,7 @@
   },
   {
     "name": "Ceremony College Hill",
+    "keywords": "trendy, matcha, specialty, tea, coffee, pastries, asian, popular, cute, study, thayer",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -85,6 +91,7 @@
   },
   {
     "name": "Bolt Coffee",
+    "keywords": "popular, coffee, drinks, pastries, study, pastries, bagels, sandwiches",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -99,6 +106,7 @@
   },
   {
     "name": "Coffee Connection Providence",
+    "keywords": "popular, quick, coffee, drinks, sweets, bagels, sandwiches",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -113,6 +121,7 @@
   },
   {
     "name": "Coffee Exchange",
+    "keywords": "popular, quick, coffee, drinks, sweets, bagels, sandwiches, study, work",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -127,6 +136,7 @@
   },
   {
     "name": "Zinneken's Belgian Waffles",
+    "keywords": "deserts, trendy, waffles, lattes, coffee, ice cream, thayer",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -141,6 +151,7 @@
   },
   {
     "name": "Little City Coffee & Kitchen",
+    "keywords": "bakery, pastries, student, college, university, trendy, aesthetic, studying, study, cozy, cute",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -155,6 +166,7 @@
   },
   {
     "name": "Starbucks (Thayer)",
+    "keywords": "thayer, pastries, coffee",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -169,6 +181,7 @@
   },
   {
     "name": "Small Point Cafe",
+    "keywords": "quick, coffee, drinks, bagels, sandwiches, thayer, study, work",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -183,6 +196,7 @@
   },
   {
     "name": "Sydney Cafe (Thayer)",
+    "keywords": "quick, coffee, drinks, bagels, sandwiches, thayer, study, work",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -197,6 +211,7 @@
   },
   {
     "name": "Hazel Origin Coffee",
+    "keywords": "thayer, coffee, espresso, aesthetic, study",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -211,6 +226,7 @@
   },
   {
     "name": "The Nitro Bar",
+    "keywords": "trendy, popular, lgbtq, coffee, pastry",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -225,6 +241,7 @@
   },
   {
     "name": "Cafe Choklad",
+    "keywords": "hole-in-the-wall, pastries, deserts, drinks, coffee",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -239,6 +256,7 @@
   },
   {
     "name": "The Corporate Cafe",
+    "keywords": "quick, coffee, drinks, bagels, sandwiches, work",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -253,6 +271,7 @@
   },
   {
     "name": "Poindexter Coffee",
+    "keywords": "quick, coffee, drinks, bagels, sandwiches, hotel, work",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -267,6 +286,7 @@
   },
   {
     "name": "Ellie's",
+    "keywords": "trendy, popular, coffee, pastry, breakfast, sandwiches, upscale, bakery, popular",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -281,6 +301,7 @@
   },
   {
     "name": "New Harvest Coffee Roasters",
+    "keywords": "popular, coffee, drinks, pastries, upscale",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "No",
@@ -295,6 +316,7 @@
   },
   {
     "name": "Seven Star Bakery",
+    "keywords": "bakery, pastries",
     "dine in": "Yes",
     "take out": "Yes",
     "delivery": "Yes",

@@ -27,8 +27,8 @@ export default function App() {
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="flex flex-col items-center justify-start mt-28 min-h-5 space-y-5 px-4">
-        <p className="text-center text-3xl sm:text-4xl font-bold text-black mt-2 leading-4">
+      <div className="flex flex-col items-center justify-start min-h-5 space-y-5 px-4">
+        <p className="text-center text-3xl sm:text-4xl font-bold text-black leading-4">
           Find the best cafe for you, <br /> wherever you are.
         </p>
 
@@ -55,13 +55,13 @@ export default function App() {
               <SearchIcon className="text-black pointer-events-none flex-shrink-0" />
             }
           />
-        <Button
-          onClick={handleSearch}
-          variant="light"
-          className="text-black text-sm p-3 border border-black rounded-md mt-6"
-        >
-          Search
-        </Button>
+          <Button
+            onClick={handleSearch}
+            variant="light"
+            className="text-black text-sm p-3 border border-black rounded-md mt-6"
+          >
+            Search
+          </Button>
         </div>
 
         {/* Category Buttons */}
