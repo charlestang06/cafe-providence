@@ -1,13 +1,14 @@
 "use client";
 
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import CafeCard from "@/components/CafeCard";
 import cafes from "@/public/cafes.json";
+import { Suspense } from "react";
+import { Spinner } from "@heroui/spinner";
 
-export default function ResultsPage() {
+function Results() {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const query = searchParams.get("query")?.toLowerCase() || "";
   const category = searchParams.get("category")?.toLowerCase() || "";
   const [filteredResults, setFilteredResults] = useState<typeof cafes>([]);
@@ -15,7 +16,6 @@ export default function ResultsPage() {
   useEffect(() => {
     if (!query && !category) {
       setFilteredResults([]);
-      return;
     }
 
     const results = cafes.filter(
@@ -58,5 +58,18 @@ export default function ResultsPage() {
         <p>No results found for &quot;{query || category}&quot;.</p>
       )}
     </div>
+  );
+}
+export default function ResultsPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex justify-center py-6">
+          <Spinner color="warning" label="Loading..." />
+        </div>
+      }
+    >
+      <Results />
+    </Suspense>
   );
 }
