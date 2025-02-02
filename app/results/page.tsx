@@ -2,6 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useWindowSize } from "react-use";
 import CafeCard from "@/components/CafeCard";
 import cafes from "@/public/cafes.json";
 import { Suspense } from "react";
@@ -9,6 +10,7 @@ import { Spinner } from "@heroui/spinner";
 import ReactConfetti from "react-confetti";
 
 function Results() {
+  const { width, height } = useWindowSize();
   const searchParams = useSearchParams();
   const query = searchParams.get("query")?.toLowerCase() || "";
   const category = searchParams.get("category")?.toLowerCase() || "";
@@ -53,16 +55,16 @@ function Results() {
 
     setTimeout(() => {
       setShowConfetti(false);
-    }, 4000); 
+    }, 4000);
   }, [query, category]);
 
   return (
     <div className="pb-[5rem] relative">
-      {showConfetti && <ReactConfetti />}
       <h1 className="text-2xl font-bold mb-4">Search Results</h1>
 
       {filteredResults.length > 0 ? (
         <div className="flex flex-col space-y-4">
+          {showConfetti && <ReactConfetti width={width} height={height} />}
           {filteredResults.map((cafe) => (
             <CafeCard
               key={cafe.name}
@@ -81,18 +83,27 @@ function Results() {
           ))}
         </div>
       ) : (
-        <p>No results found for &quot;{query || category}&quot;.</p>
+        <div className="flex justify-center py-6">
+          <Spinner color="warning" label="Loading..." />
+        </div>
       )}
     </div>
   );
 }
 
 export default function ResultsPage() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 10);
+
   return (
     <Suspense
       fallback={
         <div className="flex justify-center py-6">
-          <Spinner color="warning" label="Loading..." />
+          {isLoading && <Spinner color="warning" label="Loading..." />}
+          {!isLoading && <p>Please refine your search query.</p>}
         </div>
       }
     >

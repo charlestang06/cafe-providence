@@ -35,7 +35,7 @@ export default function App() {
     } else {
       router.push(`/results?query=${encodeURIComponent(category)}`);
     }
-  };  
+  };
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
@@ -110,7 +110,7 @@ export default function App() {
             {[
               { label: "💻 Best study spots", value: "study" },
               { label: "🥳 Trending cafes", value: "trendy" },
-              { label: "⏰ Open after 4PM", value: "Open after 4PM" },
+              { label: "⏰ Open after 3PM", value: "Open after 3PM" },
             ].map((category) => (
               <Button
                 key={category.value}
