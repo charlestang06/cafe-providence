@@ -6,12 +6,14 @@ import CafeCard from "@/components/CafeCard";
 import cafes from "@/public/cafes.json";
 import { Suspense } from "react";
 import { Spinner } from "@heroui/spinner";
+import ReactConfetti from "react-confetti";
 
 function Results() {
   const searchParams = useSearchParams();
   const query = searchParams.get("query")?.toLowerCase() || "";
   const category = searchParams.get("category")?.toLowerCase() || "";
   const [filteredResults, setFilteredResults] = useState<typeof cafes>([]);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
     if (!query && !category) {
@@ -27,16 +29,23 @@ function Results() {
         cafe["wifi"].toLowerCase().includes(query) ||
         cafe["hours open"].toLowerCase().includes(query) ||
         cafe["rating"].toString().includes(query) ||
-        cafe["keywords"]?.toLowerCase().includes(query) || 
+        cafe["keywords"]?.toLowerCase().includes(query) ||
         (category && cafe["vibe"].toLowerCase().includes(category))
     );
 
     setFilteredResults(results);
+    setShowConfetti(true);
+
+    setTimeout(() => {
+      setShowConfetti(false);
+    }, 4000); 
   }, [query, category]);
 
   return (
-    <div className="pb-[5rem]">
+    <div className="pb-[5rem] relative">
+      {showConfetti && <ReactConfetti />}
       <h1 className="text-2xl font-bold mb-4">Search Results</h1>
+
       {filteredResults.length > 0 ? (
         <div className="flex flex-col space-y-4">
           {filteredResults.map((cafe) => (
