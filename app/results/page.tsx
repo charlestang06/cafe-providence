@@ -21,7 +21,9 @@ function Results() {
 
     const results = cafes.filter((cafe) => {
       const hours = cafe["hours open"].toLowerCase();
-      const isOpenAfter5pm = /(\d{2}):(\d{2})-(\d{2}):(\d{2})/.test(hours) && parseInt(hours.split('-')[1].split(':')[0]) >= 17;
+      const isOpenAfter5pm =
+        /(\d{2}):(\d{2})-(\d{2}):(\d{2})/.test(hours) &&
+        parseInt(hours.split("-")[1].split(":")[0]) >= 17;
 
       const matchesQuery =
         cafe["address"].toLowerCase().includes(query) ||
@@ -35,9 +37,13 @@ function Results() {
           .some((keyword) => query.toLowerCase().includes(keyword)) ||
         (category && cafe["vibe"].toLowerCase().includes(category));
 
-      const matchesCategory = category === "isopenafter5pm" ? isOpenAfter5pm : false;
+      // const matchesCategory =
+      //   category === "isopenafter5pm" ? isOpenAfter5pm : false;
 
-      return matchesQuery && (category !== "isopenafter5pm" ? matchesCategory : true);
+      // return (
+      //   matchesQuery && (category !== "isopenafter5pm" ? matchesCategory : true)
+      // );
+      return matchesQuery;
     });
 
     setFilteredResults(results);
