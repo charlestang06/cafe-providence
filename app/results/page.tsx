@@ -16,6 +16,7 @@ function Results() {
   useEffect(() => {
     if (!query && !category) {
       setFilteredResults([]);
+      return;
     }
 
     const results = cafes.filter(
@@ -26,6 +27,7 @@ function Results() {
         cafe["wifi"].toLowerCase().includes(query) ||
         cafe["hours open"].toLowerCase().includes(query) ||
         cafe["rating"].toString().includes(query) ||
+        cafe["keywords"]?.toLowerCase().includes(query) || 
         (category && cafe["vibe"].toLowerCase().includes(category))
     );
 
@@ -60,6 +62,7 @@ function Results() {
     </div>
   );
 }
+
 export default function ResultsPage() {
   return (
     <Suspense
