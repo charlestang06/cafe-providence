@@ -27,7 +27,10 @@ function Results() {
         cafe["wifi"].toLowerCase().includes(query) ||
         cafe["hours open"].toLowerCase().includes(query) ||
         cafe["rating"].toString().includes(query) ||
-        cafe["keywords"]?.toLowerCase().includes(query) || 
+        cafe["keywords"]?.toLowerCase().includes(query) ||
+        cafe["keywords"]
+          .split(", ")
+          .some((keyword) => query.toLowerCase().includes(keyword)) ||
         (category && cafe["vibe"].toLowerCase().includes(category))
     );
 

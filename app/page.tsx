@@ -77,6 +77,26 @@ export default function App() {
           </Button>
         </div>
 
+        {/* Suggested searches */}
+        <div className="items-start space-y-2">
+          <div className="justify-center gap-2 flex flex-col">
+            {[
+              "matcha lattes in a cozy atmosphere",
+              "espresso and coffee for studying in a pinch",
+              "brunch and breakfast sandwiches in Providence",
+            ].map((category) => (
+              <Button
+                key={category}
+                onPress={() => handleCategorySearch(category)}
+                variant="light"
+                className="inline-flex items-center justify-center text-gray-600 text-sm border border-black rounded-[5rem] border-[0.5px] px-[1rem]"
+              >
+                <p className="text-left">{category}</p>
+              </Button>
+            ))}
+          </div>
+        </div>
+
         {/* Category Buttons */}
         <div className="w-full max-w-xl flex flex-col items-start space-y-2">
           <h2 className="text-lg font-semibold text-black mt-[4rem]">
