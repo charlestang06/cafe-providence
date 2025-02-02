@@ -64,7 +64,7 @@ export default function ResultsPage() {
           ))}
         </div>
       ) : (
-        <p>No results found for "{query || category}".</p>
+        <p>No results found for &quot;{query || category}&quot;.</p>
       )}
     </div>
   );
